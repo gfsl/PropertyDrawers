@@ -6,10 +6,6 @@ public class CompactDrawer : PropertyDrawer {
 
 	public override void OnGUI(Rect position, SerializedProperty prop, GUIContent label) {
 
-		EditorGUIUtility.LookLikeControls();
-		position.xMin += 4;
-		position.xMax -= 4;
-
 		EditorGUI.BeginProperty(position, label, prop);
 		EditorGUI.BeginChangeCheck();
 
@@ -33,7 +29,6 @@ public class CompactDrawer : PropertyDrawer {
 				}
 				break;
 			default:
-
 				EditorGUI.HelpBox(position, "[Compact] doesn't work with type '" + prop.type + "' (Supported: Vector2, Vector3, Quaternion)", MessageType.Error);
 				break;
 		}
@@ -50,8 +45,11 @@ public class CompactDrawer : PropertyDrawer {
 	}	
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
-       float extraHeight = 20f;
-       return base.GetPropertyHeight(property, label) + extraHeight;
+		float extraHeight = 18f;
+		if (property.type == "Quaternionf") {
+			return base.GetPropertyHeight(property, label) + extraHeight;
+		}
+		return base.GetPropertyHeight(property, label);
     }
 
 }
