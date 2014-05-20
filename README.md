@@ -15,8 +15,8 @@ Most of these are implemented directly from Unity's examples.
 ```C#
 [Compact]
 public Vector3 TestVector3 = Vector3.up;
+// Nicer Vector2, Vector3 and Quaternion drawers, similar to the default Transform inspector.
 ```
-* Nicer Vector2, Vector3 and Quaternion drawers, similar to the default Transform inspector.
 
 ```C#
 [DynamicRange]
@@ -25,19 +25,19 @@ public int health = 1;
 public int health_min = 0;
 [HideInInspector]
 public float health_max = 10.0f;
-```
-* Like [Range], but pulls Min and Max from introspected VarName_min and VarName_max variables.
-* Supports Floats and Ints.
+// Like [Range], but pulls Min and Max from introspected VarName_min and VarName_max variables.
+// Supports floats and ints.
+````
 
 ```C#
 [Popup("String1", "String2", ...]
 public string TestList;
+// Creates an enum-style dropdown list of Strings.
 ```
-* Creates an Enum-style dropdown list of Strings.
 
 ```C#
 [Regex (@"^(?:\d{1,3}\.){3}\d{1,3}$", "Invalid IP address!\nExample: '127.0.0.1'")]
 public string serverAddress = "192.168.0.1";
+// Validates a string input against a regexp.
+// Lifted directly from here: http://blogs.unity3d.com/2012/09/07/property-drawers-in-unity-4/
 ```
-* Validates a String input against a regexp.
-* Lifted directly from here: http://blogs.unity3d.com/2012/09/07/property-drawers-in-unity-4/
