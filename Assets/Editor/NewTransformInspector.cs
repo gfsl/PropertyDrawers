@@ -148,11 +148,11 @@ public class NewTransformInspector : Editor
 
 	void DrawRotation ()
 	{
-		var style = new GUIStyle();
-		style.padding = new RectOffset(0,0,4,0);
-
 		EditorGUILayout.BeginHorizontal();
 		{
+			var style = new GUIStyle();
+			style.padding = new RectOffset(0,0,4,0);
+			
 			float snapSize = EditorPrefs.GetFloat("RotationSnap");
 			bool reset = GUILayout.Button("R", GUILayout.Width(20f));
 
@@ -175,9 +175,15 @@ public class NewTransformInspector : Editor
 				{
 					GUILayout.Space(15f);
 					if (GUILayout.Button("\u2191", GUILayout.Width(25f)))
-						Selection.activeTransform.Rotate(new Vector3(-snapSize,0f,0f));
+					{
+						altered |= Axes.X;
+						visible.x += -snapSize;
+					}
 					if (GUILayout.Button("\u2193", GUILayout.Width(25f)))
-						Selection.activeTransform.Rotate(new Vector3(snapSize,0f,0f));
+					{
+						altered |= Axes.X;
+						visible.x += snapSize;
+					}
 				}
 				EditorGUILayout.EndHorizontal();
 
@@ -192,9 +198,15 @@ public class NewTransformInspector : Editor
 				{
 					GUILayout.Space(15f);
 					if (GUILayout.Button("\u2190", GUILayout.Width(25f)))
-						Selection.activeTransform.Rotate(new Vector3(0f,-snapSize,0f));
+					{
+						altered |= Axes.Y;
+						visible.y += -snapSize;
+					}
 					if (GUILayout.Button("\u2192", GUILayout.Width(25f)))
-						Selection.activeTransform.Rotate(new Vector3(0f,snapSize,0f));
+					{
+						altered |= Axes.Y;
+						visible.y += -snapSize;
+					}
 				}
 				EditorGUILayout.EndHorizontal();
 				
@@ -209,9 +221,15 @@ public class NewTransformInspector : Editor
 				{
 					GUILayout.Space(15f);
 					if (GUILayout.Button("\u21BB", GUILayout.Width(25f)))
-						Selection.activeTransform.Rotate(new Vector3(0f,0f,-snapSize));
+					{
+						altered |= Axes.Z;
+						visible.z += -snapSize;
+					}
 					if (GUILayout.Button("\u21BA", GUILayout.Width(25f)))
-						Selection.activeTransform.Rotate(new Vector3(0f,0f,snapSize));
+					{
+						altered |= Axes.Z;
+						visible.z += -snapSize;
+					}
 				}
 				EditorGUILayout.EndHorizontal();
 				
