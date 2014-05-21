@@ -4,6 +4,8 @@
 
 Includes reset buttons, nicer wrapping of Euler angles, and snapping rotation buttons that (for me at least) also serve as a reminder of which axis means which rotation.
 
+Also includes component context menu items for copying and pasting position/rotation/scale independantly.
+
 ## AddChild/AddParent
 
 Intelligently adds single or multiple children, or can group a set of GameObjects under a new parent GameObject, taking into account (as best it can) existing hierarchies.
@@ -41,3 +43,7 @@ public string serverAddress = "192.168.0.1";
 // Validates a string input against a regexp.
 // Lifted directly from here: http://blogs.unity3d.com/2012/09/07/property-drawers-in-unity-4/
 ```
+
+## Player Preferences
+
+`Edit/Player Preferences` currently has a single item, which deletes all saved player preferences.
