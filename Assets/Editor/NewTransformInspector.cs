@@ -112,9 +112,10 @@ public class NewTransformInspector : Editor
 		GUI.changed = false;
 
 		var style = new GUIStyle(GUI.skin.textField);
-		var offset = style.margin;
-		offset.left = 0;
-		style.margin = offset;
+		var margin = style.margin;
+		margin.left = 0;
+		margin.right = 0;
+		style.margin = margin;
 
 		if (!hidden)
 		{
@@ -152,7 +153,8 @@ public class NewTransformInspector : Editor
 		{
 			var style = new GUIStyle();
 			style.padding = new RectOffset(0,0,4,0);
-			
+			style.margin = new RectOffset(4,0,0,0);
+
 			float snapSize = EditorPrefs.GetFloat("RotationSnap");
 			bool reset = GUILayout.Button("R", GUILayout.Width(20f));
 
