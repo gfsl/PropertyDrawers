@@ -108,25 +108,24 @@ public class NewTransformInspector : Editor
 
 	static bool FloatField (string name, ref float value, bool hidden, GUILayoutOption opt)
 	{
+		var style = new GUIStyle(GUI.skin.textField);
+		style.margin = new RectOffset(0,0,style.margin.top,style.margin.bottom);
+
 		float newValue = value;
 		GUI.changed = false;
 
-		var style = new GUIStyle(GUI.skin.textField);
-		var margin = style.margin;
-		margin.left = 0;
-		margin.right = 0;
-		style.margin = margin;
-
+		Rect rect = EditorGUILayout.GetControlRect(true, EditorGUIUtility.singleLineHeight, style, opt);
+		EditorGUI.BeginProperty(rect, GUIContent.none, NewTransformInspector.instance.mRot);
 		if (!hidden)
 		{
-			newValue = EditorGUILayout.FloatField(name, newValue, style, opt);
+			newValue = EditorGUI.FloatField(rect, name, newValue, style);
 		}
 		else
 		{
-			GUI.contentColor = new Color(.7f,.7f,.7f);
-			float.TryParse(EditorGUILayout.TextField(name, "\u2014", style, opt), out newValue);
-			GUI.contentColor = Color.white;
+			style.normal.textColor = new Color(.7f,.7f,.7f);
+			float.TryParse(EditorGUI.TextField(rect, name, "\u2014", style), out newValue);
 		}
+		EditorGUI.EndProperty();
 
 		if (GUI.changed && Differs(newValue, value))
 		{
@@ -155,6 +154,8 @@ public class NewTransformInspector : Editor
 			style.padding = new RectOffset(0,0,4,0);
 			style.margin = new RectOffset(4,0,0,0);
 
+//			bool isPropertyAnimated = AnimationMode.IsPropertyAnimated(serializedObject.targetObject, mRot.propertyPath);
+
 			float snapSize = EditorPrefs.GetFloat("RotationSnap");
 			bool reset = GUILayout.Button("R", GUILayout.Width(20f));
 
@@ -180,11 +181,13 @@ public class NewTransformInspector : Editor
 					{
 						altered |= Axes.X;
 						visible.x += -snapSize;
+						GUI.FocusControl("");
 					}
 					if (GUILayout.Button("\u2193", GUILayout.Width(25f)))
 					{
 						altered |= Axes.X;
 						visible.x += snapSize;
+						GUI.FocusControl("");
 					}
 				}
 				EditorGUILayout.EndHorizontal();
@@ -203,11 +206,13 @@ public class NewTransformInspector : Editor
 					{
 						altered |= Axes.Y;
 						visible.y += -snapSize;
+						GUI.FocusControl("");
 					}
 					if (GUILayout.Button("\u2192", GUILayout.Width(25f)))
 					{
 						altered |= Axes.Y;
 						visible.y += -snapSize;
+						GUI.FocusControl("");
 					}
 				}
 				EditorGUILayout.EndHorizontal();
@@ -226,11 +231,13 @@ public class NewTransformInspector : Editor
 					{
 						altered |= Axes.Z;
 						visible.z += -snapSize;
+						GUI.FocusControl("");
 					}
 					if (GUILayout.Button("\u21BA", GUILayout.Width(25f)))
 					{
 						altered |= Axes.Z;
 						visible.z += -snapSize;
+						GUI.FocusControl("");
 					}
 				}
 				EditorGUILayout.EndHorizontal();
