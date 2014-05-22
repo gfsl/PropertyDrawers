@@ -6,12 +6,12 @@ using System.Collections;
 
 class CreatePrefabFromSelected : ScriptableObject
 {
-	const string menuTitle = "GameObject/Create Prefab From Selected";
+	const string menuTitle = "GameObject/Create Prefab From Selected*";
 	
 	/// <summary>
 	/// Creates a prefab from the selected game object.
 	/// </summary>
-	[MenuItem(menuTitle)]
+	[MenuItem(menuTitle,false,111)]
 	static void CreatePrefab()
 	{
 		GameObject[] obj = Selection.gameObjects;
@@ -47,7 +47,7 @@ class CreatePrefabFromSelected : ScriptableObject
 	/// Validates the menu.
 	/// </summary>
 	/// <remarks>The item will be disabled if no game object is selected.</remarks>
-	[MenuItem(menuTitle, true)]
+	[MenuItem(menuTitle,true,111)]
 	static bool ValidateCreatePrefab()
 	{
 		return Selection.activeGameObject != null;

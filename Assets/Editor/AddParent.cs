@@ -6,7 +6,10 @@ using System.Collections;
 
 public class AddParent : ScriptableObject
 {
-	[MenuItem ("GameObject/Add Parent")]
+	const string menuTitle = "GameObject/Add Parent*";
+	const int menuId = 32;
+
+	[MenuItem (menuTitle,false,menuId)]
 	static void MenuAddParent()
 	{
 		Transform[] transforms = Selection.GetTransforms(SelectionMode.TopLevel |
@@ -42,7 +45,7 @@ public class AddParent : ScriptableObject
 		Selection.activeGameObject = newParent;
 	}
 
-	[MenuItem ("GameObject/Add Parent", true)]
+	[MenuItem (menuTitle,true,menuId)]
 	static bool ValidateMenuAddParent() {
 		return Selection.activeGameObject != null;
 	}

@@ -4,7 +4,10 @@ using System.Collections;
 
 public class AddChild : ScriptableObject
 {
-	[MenuItem ("GameObject/Add Child")]
+	const string menuTitle = "GameObject/Add Child*";
+	const int menuId = 31;
+
+	[MenuItem (menuTitle,false,menuId)]
 	static void MenuAddChild()
 	{
 		Transform[] transforms = Selection.GetTransforms(SelectionMode.TopLevel | SelectionMode.OnlyUserModifiable);
@@ -20,7 +23,7 @@ public class AddChild : ScriptableObject
 		}
 	}
 
-	[MenuItem ("GameObject/Add Child", true)]
+	[MenuItem (menuTitle,true,menuId)]
 	static bool ValidateMenuAddChild() {
 		return Selection.activeGameObject != null;
 	}
