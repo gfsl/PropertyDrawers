@@ -211,7 +211,7 @@ public class NewTransformInspector : Editor
 					if (GUILayout.Button("\u2192", GUILayout.Width(25f)))
 					{
 						altered |= Axes.Y;
-						visible.y += -snapSize;
+						visible.y += snapSize;
 						GUI.FocusControl("");
 					}
 				}
@@ -236,7 +236,7 @@ public class NewTransformInspector : Editor
 					if (GUILayout.Button("\u21BA", GUILayout.Width(25f)))
 					{
 						altered |= Axes.Z;
-						visible.z += -snapSize;
+						visible.z += snapSize;
 						GUI.FocusControl("");
 					}
 				}
