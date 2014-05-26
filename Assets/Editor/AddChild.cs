@@ -20,7 +20,7 @@ public class AddChild : ScriptableObject
 			newChild.transform.parent = transform;
 			newChild.transform.localPosition = Vector3.zero;
 			newChild.transform.localRotation = Quaternion.identity;
-			newChild.transform.localScale = Vector3.zero;
+			newChild.transform.localScale = Vector3.one;
 			Selection.activeGameObject = newChild;
 		}
 	}
